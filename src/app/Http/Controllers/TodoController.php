@@ -12,7 +12,7 @@ class TodoController extends Controller
     public function __construct(Todo $todo)
     {
         $this->todo = $todo;
-    }
+    } 
 
     public function index()
     {
@@ -31,5 +31,11 @@ class TodoController extends Controller
         $this->todo->fill($inputs);
         $this->todo->save();
         return redirect()->route('todo.index');
+    }
+
+    public function show($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('todo.show', ['todo' => $todo]);
     }
 }
