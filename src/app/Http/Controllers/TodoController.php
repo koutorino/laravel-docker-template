@@ -62,4 +62,12 @@ class TodoController extends Controller
         return redirect()->route('todo.index');
 
     }
+
+    public function complete($id) 
+    {
+        $todo = $this->todo->find($id);
+        $todo->is_completed = !$todo->is_completed;
+        $todo->save();
+        return response()->json(['is_completed' => $todo->is_completed]);
+    }
 }
